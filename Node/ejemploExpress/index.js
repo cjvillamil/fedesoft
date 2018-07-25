@@ -8,7 +8,8 @@ const hostname = 'localhost';
 const port = 3000;
 
 const app = express();
-
+const estudianteRouter = require('./routes/estudianteRouter');
+app.use('/estudiantes', estudianteRouter);
 /*
 app.use((req, res, next) => {
   console.log(req.headers);
@@ -69,6 +70,7 @@ app.delete('/estudiantes/:estudianteId', (req, res, next) => {
     res.end('Eliminando al estudiante: ' + req.params.estudianteId);
 });
 */
+
 
 const server = http.createServer(app);
 
