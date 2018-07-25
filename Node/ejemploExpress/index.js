@@ -9,7 +9,9 @@ const port = 3000;
 
 const app = express();
 const estudianteRouter = require('./routes/estudianteRouter');
-app.use('/estudiantes', estudianteRouter);
+const appReciclarRouter = require('./routes/appReciclarRouter');
+//app.use('/estudiantes', estudianteRouter);
+app.use('/puntosRecoleccion',appReciclarRouter);
 /*
 app.use((req, res, next) => {
   console.log(req.headers);
