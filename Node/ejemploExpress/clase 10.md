@@ -28,7 +28,7 @@ npm install express --save
 ```
 node_modules/
 ```
-- creamos un archivo llamado inde.js y agregamos el siguiente codigo 
+- creamos un archivo llamado index.js y agregamos el siguiente codigo 
 ```javascript
 const express = require('express'),
      http = require('http');
