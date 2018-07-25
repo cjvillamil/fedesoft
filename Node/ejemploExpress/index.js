@@ -24,17 +24,18 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
-
+/*
+//Para todas las solicitudes que ingresen a esa ruta
 app.all('/estudiantes', (req,res,next) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   next();
 });
-
+//
 app.get('/estudiantes', (req,res,next) => {
     res.end('Este metodo retornara la lista de estudiantes');
 });
-
+//
 app.post('/estudiantes', (req, res, next) => {
     console.dir(req.body);
  res.end('Se agregara el estudiante: ' + req.body.name + ' que vive en: ' + req.body.address);
@@ -67,6 +68,7 @@ app.put('/estudiantes/:estudianteId', (req, res, next) => {
 app.delete('/estudiantes/:estudianteId', (req, res, next) => {
     res.end('Eliminando al estudiante: ' + req.params.estudianteId);
 });
+*/
 
 const server = http.createServer(app);
 

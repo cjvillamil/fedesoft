@@ -144,8 +144,8 @@ app.delete('/estudiantes/:estudianteId', (req, res, next) => {
 ```
 - interactuar con el api
 - hacer un commit "REST API"
-- crear un archivo llamado `routes` dentro de la carpeta ejemploExpress.
-- crear un archivo llamado `Router.js` en la carpeta de rutas y agregar el siguiete codigo 
+- crear una carpeta llamado `routes` dentro de la carpeta ejemploExpress.
+- crear un archivo llamado `estudianteRouter.js` en la carpeta `routes` y agregar el siguiete codigo 
 ```javascript
 const express = require('express');
 const bodyParser = require('body-parser');
