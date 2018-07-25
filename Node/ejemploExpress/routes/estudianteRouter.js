@@ -25,4 +25,28 @@ estudianteRouter.route('/')
     res.end('Eliminando todos los estudiantes');
 });
 
+estudianteRouter.route('/:estudianteId')
+.all((req,res,next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+.get((req,res,next) => {
+    res.end('Esudiante: '+req.params.estudianteId);
+})
+.post((req, res, next) => {
+    res.statusCode = 403;
+    res.end('la operacion POST no es soportada en  /estudiantes/'+ req.params.estudianteId);
+})
+.put((req, res, next) => {
+    res.write('Actualizando datos del  estudiante: ' + req.params.estudianteId + '\n');
+  res.end('Se actualizara al estudiante: ' + req.body.name + 
+        ' con direccion: ' + req.body.address);
+})
+.delete((req, res, next) => {
+    res.end('Eliminando al estudiante: ' + req.params.estudianteId);
+});
+/* así para cada uno de las rutas adicionales
+estudianteRouter.route('/:materias').all.get.... etc
+*/
 module.exports = estudianteRouter;
