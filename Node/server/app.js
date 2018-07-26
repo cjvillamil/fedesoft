@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+//1. Se añade el modulo de nuestra app
+var appReciclarRouter = require('./routes/appReciclarRouter');
 
 var app = express();
 
@@ -21,6 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//2. Se añade el modulo de nuestra app
+app.use('/puntosRecoleccion',appReciclarRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
