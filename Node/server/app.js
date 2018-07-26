@@ -8,6 +8,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //1. Se añade el modulo de nuestra app
 var appReciclarRouter = require('./routes/appReciclarRouter');
+var mongoose = require('mongoose');
+var config = require('./config');
+var db=mongoose.connect(config.mongoUrl);
+mongoose.connection.on('error',()=>{console.log("Base de datos en problemas")});
+mongoose.connection.once('open',()=>{console.log("Se ha conectado correctamente")});
 
 var app = express();
 
@@ -27,9 +32,9 @@ app.use('/users', usersRouter);
 app.use('/puntosRecoleccion',appReciclarRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -39,7 +44,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
+  res.json(err);
 });
 
 module.exports = app;
