@@ -8,14 +8,30 @@ ng serve --open
 crear en la carpeta app una carpeta share
 y dentro de la carpeta share un archivo
 data.ts
-```
 abrir nueva terminal
+```js
 cd <nombre app>
-ng generate component <nombre componente>
+//ng generate component <nombre componente>
+ng generate component personas/usuarios
 ```
 Ir a https://jsonplaceholder.typicode.com/todos y copiar todo;
 en el archivo data.ts 
-```
+``` js
 export const usuariosData = 
 ```
 y pegamos lo que se copio de la pagina;
+en el archivo app.component.html al final añadimos
+```html
+<app-usuarios></app-usuarios>
+```
+en usuarios.component.ts
+```js
+import { usuariosData } from '../../share/data';
+```
+dentro de UsuariosComponent añadimos
+```js
+ persona = usuariosData[0];
+  constructor() {
+    console.log(this.persona);
+  }
+```
