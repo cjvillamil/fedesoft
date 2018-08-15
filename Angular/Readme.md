@@ -35,3 +35,35 @@ dentro de UsuariosComponent añadimos
     console.log(this.persona);
   }
 ```
+dentro de usuarios.component.html
+añadimos:
+```html 
+<div>
+  <ul>
+    <li>completed: {{persona.completed}}</li>
+    <li>id: {{persona.id}}</li>
+    <li>title: {{persona.title}}</li>
+    <li>userId: {{persona.userId}}</li>
+  </ul>
+</div>
+```
+luego vamos a usar directivas
+dentro de UsuariosComponent modificamos así:
+```js
+ personas = usuariosData;
+  constructor() {
+    //console.log(this.persona);
+  }
+```
+y en usuarios.component.html
+modificamos:
+```html 
+<div>
+  <ul *ngFor="let persona of personas">
+    <li>completed: {{persona.completed}}</li>
+    <li>id: {{persona.id}}</li>
+    <li>title: {{persona.title}}</li>
+    <li>userId: {{persona.userId}}</li>
+  </ul>
+</div>
+```
