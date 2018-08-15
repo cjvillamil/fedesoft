@@ -67,3 +67,15 @@ modificamos:
   </ul>
 </div>
 ```
+usando mas propiedades de la directiva modificamos así:
+```html
+<div>
+  <ul *ngFor="let persona of personas; let i=index">
+    <li># {{i}}</li>
+    <li>completed: {{persona.completed}}</li>
+    <li>id: {{persona.id}}</li>
+    <li>title: {{persona.title}}</li>
+    <li>userId: {{persona.userId}}</li>
+  </ul>
+</div>
+```
