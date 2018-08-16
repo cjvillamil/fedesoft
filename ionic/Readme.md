@@ -14,6 +14,12 @@ luego
 cd myApp 
 ionic serve
 ```
+luego ir al navegador en 
+
+http://localhost:8100/ionic-lab 
+
+y seleccionar la plataforma en la que queremos visualizar.
+
 luego ir añadiendo funcionalidades:
 en el archivo variables.scss de la carpeta theme modificamos así:
 ```scss
