@@ -106,7 +106,7 @@ en el archivo user-service.ts
   
   //por esto
    getOneUser():Observable<User>{
-    return this.http.get<User>('https://randomuser.me/api');
+    return this.http.get<User>('https://randomuser.me/api?results=50');
   }
   //automaticamente se generan los imports validar que sean
   import { Observable } from 'rxjs';
@@ -120,9 +120,72 @@ import { User } from '../../shared/Usuario';
  usuario:User;
  ```
  
- luego en el archvio user-info.html
+ luego en el archvio user-info.html podemos hacer diferentes cosas
  ```html
- <ion-content padding> 
-  {{usuario.results}}
- </ion-content>
+ <!--
+  Generated template for the UserInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>userInfo</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div *ngIf="!usuario">
+        cargando...
+        <ion-spinner name="bubbles"></ion-spinner>
+        <hr>
+    </div>
+    <div *ngIf="usuario">
+        <div *ngFor="let us of usuario.results">
+            <ion-list>
+                <ion-item>
+                    <ion-avatar item-start>
+                        <img src="{{us.picture.large}}">
+                    </ion-avatar>
+                    <h2>{{us.name.title}} {{us.name.first}} {{us.name.last}}</h2>
+                    <h3>
+                        <ion-icon name="calendar"></ion-icon> {{us.dob.date}}</h3>
+                    <h3>
+                        <ion-icon name="mail-open"></ion-icon> {{us.email}}</h3>
+                    <h3>
+                        <ion-icon name="call"></ion-icon> {{us.phone}}</h3>
+                </ion-item>
+            </ion-list>
+            <!-- <ion-card>
+                <img src="{{us.picture.large}}" />
+                <ion-card-content>
+                    <ion-card-title>
+                        {{us.name.title}} {{us.name.first}} {{us.name.last}}
+                    </ion-card-title>
+                    <p>
+                        <ion-list>
+                            <ion-item>
+                                <div *ngIf="us.gender=='female'">
+                                    <ion-icon name="woman"></ion-icon> is a Woman
+                                </div>
+                                <div *ngIf="us.gender!='female'">
+                                    <ion-icon name="man"></ion-icon> is a Man
+                                </div>
+
+                            </ion-item>
+                        </ion-list>
+                    </p>
+                </ion-card-content>
+            </ion-card>
+          -->
+
+            <!--si existiera un array dentro de otro array se podría recorrer así
+      <div *ngFor= "let otro of result.weew"></div>-->
+        </div>
+    </div>
+</ion-content>
 ```
+
