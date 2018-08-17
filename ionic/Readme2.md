@@ -37,7 +37,9 @@ ionic generate page userInfo
  ```
  en app.module.ts añadir en imports de  @NgModule 
  ```ts
- import { UserInfoPageModule } from '../pages/user-info/user-info.module'; //carga automaticamente
+ import { UserInfoPageModule } from '../pages/user-info/user-info.module'; //se importa automaticamente
+ import { HttpClientModule } from '@angular/common/http';//se importa automaticamente
+    HttpClientModule,
     UserInfoPageModule
  ```
  en home.html añadimos
@@ -46,9 +48,29 @@ ionic generate page userInfo
   ```
  en home.ts añadimos
  ```ts
- import { UserInfoPage } from '../user-info/user-info';//carga automaticamente
+ import { UserInfoPage } from '../user-info/user-info';//se importa automaticamente
  
  verUsuario(){
     this.navCtrl.push(UserInfoPage);
   }
   ```
+en el archivo user-info.ts de la carpeta user-info añadimos:
+ ```ts
+ import { UserServiceProvider } from '../../providers/user-service/user-service';//se importa automaticamente
+ 
+ //antes del constructor
+ usuario;
+  errMsg;
+ //como parametros del constructor añadir
+ , public userService:UserServiceProvider
+ 
+ // en la función ionViewDidLoad añadir
+ this.usuario = this.userService.getOneUser()
+    .subscribe((userData)=>{
+      this.usuario=userData;
+      console.log(this.usuario);
+    },(err)=>{
+      this.errMsg = err;
+    });
+ 
+ ```
