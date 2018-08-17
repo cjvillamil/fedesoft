@@ -30,3 +30,25 @@ https://code.visualstudio.com/
 - TSLint
 - TypeScript	Hero
 - TypeScript	Importer
+
+introducir en la terminal
+ ```
+ionic generate page userInfo
+ ```
+ en app.module.ts añadir en imports de  @NgModule 
+ ```ts
+ import { UserInfoPageModule } from '../pages/user-info/user-info.module'; //carga automaticamente
+    UserInfoPageModule
+ ```
+ en home.html añadimos
+  ```html
+<button ion-button (click)="verUsuario()">ver usuario</button>
+  ```
+ en home.ts añadimos
+ ```ts
+ import { UserInfoPage } from '../user-info/user-info';//carga automaticamente
+ 
+ verUsuario(){
+    this.navCtrl.push(UserInfoPage);
+  }
+  ```
