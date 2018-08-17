@@ -65,7 +65,7 @@ en el archivo user-info.ts de la carpeta user-info añadimos:
  , public userService:UserServiceProvider
  
  // en la función ionViewDidLoad añadir
- this.usuario = this.userService.getOneUser()
+  this.userService.getOneUser()
     .subscribe((userData)=>{
       this.usuario=userData;
       console.log(this.usuario);
@@ -74,3 +74,55 @@ en el archivo user-info.ts de la carpeta user-info añadimos:
     });
  
  ```
+
+en http://json2ts.com/ copiamos el json de https://randomuser.me/api y generamos el ts
+
+en nuestro proyecto en la carpeta src creamos una carpeta llamada  shared y en ella añadimos el archivo User.ts donde copiamos todo el ts que generó la pagina http://json2ts.com/
+
+Luego borramos la primera y la ultima linea de ese archivo 
+```ts
+declare module namespace {//primera linea
+}//última
+```
+tambien eliminamos todos los export menos el ultimo
+```ts
+export interface RootObject {
+        results: Result[];
+        info: Info;
+    }
+//y cambiarlo por 
+
+export interface User {
+    results: Result[];
+    info: Info;
+}
+```
+en el archivo user-service.ts
+```ts
+//cambiar esto
+ getOneUser(){
+    return this.http.get('https://randomuser.me/api');
+  }
+  
+  //por esto
+   getOneUser():Observable<User>{
+    return this.http.get<User>('https://randomuser.me/api');
+  }
+  //automaticamente se generan los imports validar que sean
+  import { Observable } from 'rxjs';
+import { User } from '../../shared/Usuario';
+  
+ ```
+ luego en el archivo user-info.ts a la variable usuario le asignamos el tipo User así:
+ 
+ ```ts
+ import { User } from '../../shared/Usuario';//se importa automaticamente 
+ usuario:User;
+ ```
+ 
+ luego en el archvio user-info.html
+ ```html
+ <ion-content padding> 
+  {{usuario.results}}
+ </ion-content>
+```
