@@ -39,7 +39,7 @@ export class SignupPage {
   }
 
   doSignup() {
-    this.apiService.post('users/login',this.account).subscribe(
+    this.apiService.post('users/signup',this.account).subscribe(
       (registro)=>{
         let datoUsuario={
           username:this.account.username,
